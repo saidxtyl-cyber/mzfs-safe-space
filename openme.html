@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Open Me When... ♡</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            background-image: url("image/love.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+
+            color: #5b4a45;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+
+            padding: 40px 50px;
+
+            background: rgba(255, 250, 247, 0.80);
+
+            border: 1px solid rgba(255, 255, 255, 0.65);
+
+            border-radius: 28px;
+
+            box-shadow: 0 15px 45px rgba(70, 50, 45, 0.18);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            text-align: center;
+        }
+
+
+        .top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .brand {
+            font-size: 11px;
+
+            letter-spacing: 3px;
+
+            color: #8a7067;
+        }
+
+
+        .home {
+            text-decoration: none;
+
+            color: #6f5a53;
+
+            font-size: 14px;
+
+            padding: 8px 15px;
+
+            border: 1px solid rgba(111, 90, 83, 0.3);
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+
+        .home:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+
+        h1 {
+            font-size: 34px;
+
+            font-weight: normal;
+
+            margin: 10px 0 15px;
+
+            color: #5b4a45;
+        }
+
+
+        .intro {
+            max-width: 700px;
+
+            margin: 0 auto 35px;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            color: #765f57;
+        }
+
+
+        .letters {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+
+            margin-top: 25px;
+        }
+
+
+        .letter-card {
+            min-height: 135px;
+
+            border: none;
+
+            border-radius: 22px;
+
+            padding: 25px 18px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            color: #5b4a45;
+
+            cursor: pointer;
+
+            box-shadow: 0 7px 20px rgba(80, 60, 55, 0.10);
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
+
+
+        .letter-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: 0 12px 25px rgba(80, 60, 55, 0.16);
+        }
+
+
+        .miss {
+            background: #f3d9dc;
+        }
+
+
+        .sleep {
+            background: #dedcf0;
+        }
+
+
+        .reassurance {
+            background: #f1e0c9;
+        }
+
+
+        .tired {
+            background: #f5d8df;
+        }
+
+
+        .alone {
+            background: #dce8df;
+        }
+
+
+        .needme {
+            background: #ead8e8;
+        }
+
+
+        .strangers {
+            background: #e6ded8;
+        }
+
+
+        /* LETTER VIEW */
+
+        .letter-view {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 35px 40px;
+
+            border-radius: 25px;
+
+            text-align: left;
+
+            line-height: 1.9;
+
+            box-shadow: 0 8px 25px rgba(70, 50, 45, 0.12);
+
+            animation: appear 0.3s ease;
+        }
+
+
+        .letter-view.show {
+            display: block;
+        }
+
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .letter-title {
+            text-align: center;
+
+            font-size: 25px;
+
+            font-weight: normal;
+
+            margin-bottom: 25px;
+
+            color: #5b4a45;
+        }
+
+
+        .letter-text {
+            white-space: pre-line;
+
+            font-size: 15px;
+
+            color: #5f4d47;
+        }
+
+
+        .signature {
+            text-align: right;
+
+            margin-top: 30px;
+
+            font-size: 14px;
+
+            font-style: italic;
+
+            color: #765f57;
+        }
+
+
+        .back-button {
+            display: block;
+
+            margin: 30px auto 0;
+
+            padding: 10px 20px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            border: 1px solid rgba(91, 74, 69, 0.3);
+
+            border-radius: 25px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 14px;
+
+            color: #5b4a45;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+
+        .footer {
+            margin-top: 35px;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+
+            color: #8a7067;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            body {
+                padding: 15px;
+            }
+
+
+            .container {
+                padding: 30px 20px;
+            }
+
+
+            .letters {
+                grid-template-columns: 1fr;
+            }
+
+
+            h1 {
+                font-size: 28px;
+            }
+
+
+            .intro {
+                font-size: 14px;
+            }
+
+
+            .letter-view {
+                padding: 28px 22px;
+            }
+
+
+            .letter-text {
+                font-size: 14px;
+            }
+
+
+            .top {
+                align-items: flex-start;
+            }
+
+
+            .brand {
+                font-size: 9px;
+
+                letter-spacing: 2px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- TOP -->
+
+        <div class="top">
+
+            <div class="brand">
+                MZFS SAFE SPACE
+            </div>
+
+
+            <a href="index.html" class="home">
+                ← home
+            </a>
+
+        </div>
+
+
+
+        <!-- LETTER LIST -->
+
+        <div id="letterList">
+
+
+            <h1>
+                Open me when... ♡
+            </h1>
+
+
+            <p class="intro">
+                i made these little letters for some random moments.
+                you don't have to open all of them.
+                just pick one whenever you feel like you need it.
+            </p>
+
+
+
+            <div class="letters">
+
+
+                <button
+                    class="letter-card miss"
+                    onclick="openLetter('miss')">
+
+                    Open me when...<br>
+                    you miss me
+
+                </button>
+
+
+
+                <button
+                    class="letter-card sleep"
+                    onclick="openLetter('sleep')">
+
+                    Open me when...<br>
+                    you can't sleep
+
+                </button>
+
+
+
+                <button
+                    class="letter-card stressed"
+                    onclick="openLetter('stressed')">
+
+                    Open me when...<br>
+                    you're stressed
+
+                </button>
+
+
+
+                <button
+                    class="letter-card tired"
+                    onclick="openLetter('tired')">
+
+                    Open me when...<br>
+                    you're feeling tired
+
+                </button>
+
+
+
+                <button
+                    class="letter-card alone"
+                    onclick="openLetter('alone')">
+
+                    Open me when...<br>
+                    you feel alone
+
+                </button>
+
+
+
+                <button
+                    class="letter-card needme"
+                    onclick="openLetter('needme')">
+
+                    Open me when...<br>
+                    you just need me
+
+                </button>
+
+
+
+                <button
+                    class="letter-card strangers"
+                    onclick="openLetter('strangers')">
+
+                    Open me when...<br>
+                    we become strangers
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LETTER -->
+
+        <div
+            id="letterView"
+            class="letter-view">
+
+
+            <div
+                id="letterTitle"
+                class="letter-title">
+            </div>
+
+
+            <div
+                id="letterText"
+                class="letter-text">
+            </div>
+
+
+            <div class="signature">
+                — your princess ♡
+            </div>
+
+
+            <button
+                class="back-button"
+                onclick="backToLetters()">
+
+                ← back to letters
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <p class="footer">
+            made with love by princess ♡
+        </p>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        function openLetter(type) {
+
+
+            const list =
+                document.getElementById("letterList");
+
+
+            const view =
+                document.getElementById("letterView");
+
+
+            const title =
+                document.getElementById("letterTitle");
+
+
+            const text =
+                document.getElementById("letterText");
+
+
+            list.style.display = "none";
+
+
+            view.classList.add("show");
+
+
+
+            /* YOU MISS ME */
+
+            if (type === "miss") {
+
+
+                view.style.background = "#f3d9dc";
+
+
+                title.innerHTML =
+                    " KAUUUU RINDUUU AKUU KEE BB ♡";
+
+
+                text.innerHTML =
+                    "HAHAHAHA kekasih hati jiwa raga jantungku,\n\n" +
+                    "if you miss me right now, just text me.\n\n" +
+
+                    "you don't have to think of something interesting to say. " +
+                    "you can literally just send me anything.\n\n" +
+
+                    "i probably miss you too, you know. " +
+                    "sometimes i just don't say it.\n\n" +
+
+                    "anw i hope you don't get tired of me.. " +
+                    "i know i can be annoying sometimes and i talk a lot, " +
+                    "but i hope you never get bored of having me around.\n\n" +
+
+                    "anyway, if you really miss me, " +
+                    "chat je la princess hehe princess selalu online 24hours untuk kekasih hati dia.";
+
+            }
+
+
+
+            /* YOU CAN'T SLEEP */
+
+            else if (type === "sleep") {
+
+
+                view.style.background = "#dedcf0";
+
+
+                title.innerHTML =
+                    "you can't sleep ♡";
+
+
+                text.innerHTML =
+                    "still awake?\n\n" +
+
+                    "i know sometimes your brain just refuses to shut up. " +
+                    "so if you're thinking about too many things right now, " +
+                    "try not to overthink everything at once.\n\n" +
+
+                    "put your phone down for a bit, get comfortable and just rest. " +
+                    "you don't have to figure everything out tonight.\n\n" +
+
+                    "and if you still can't sleep, " +
+                    "you can always text me.\n\n" +
+
+                    "now go sleep before i start scolding you.";
+
+            }
+
+
+
+            /* YOURE STRESSED */
+
+            else if (type === "stressed") {
+
+
+                view.style.background = "#f1e0c9";
+
+
+                title.innerHTML =
+                    "you're feeling stressed :(";
+
+
+                   text.innerHTML =
+                    "i know student life can be tiring sometimes.\n\n" +
+
+                    "assignment belum siap, class banyak, " +
+                    "deadline makin dekat, lepastu banyak benda lain nak fikir.\n\n" +
+
+                    "so kalau kau tengah stressed right now, " +
+                    "don't force yourself to do everything at once.\n\n" +
+
+                    "buat sikit-sikit dulu. " +
+                    "yang paling urgent, settle that one first.\n\n" +
+
+                    "and if you feel like complaining about your lecturer, " +
+                    "assignment or anything else, come tell me. " +
+                    "aku dengar je.\n\n" +
+
+                    "we're both students, so i know how annoying this shit can be.\n\n" +
+
+                    "just do what you can today. " +
+                    "the rest can wait for a bit.\n\n" +
+
+                    "now go breathe and stop stressing yourself out too much.";
+
+            }
+
+
+
+            /* YOU'RE FEELING TIRED */
+
+            else if (type === "tired") {
+
+
+                view.style.background = "#f5d8df";
+
+
+                title.innerHTML =
+                    "you're feeling tired ♡";
+
+
+                text.innerHTML =
+                    "i know you've been feeling burned out lately, " +
+                    "even when you don't really know why.\n\n" +
+
+                    "and honestly, you don't have to know why all the time. " +
+                    "maybe you're just tired. maybe you've had too much going on. " +
+                    "maybe you just need a break.\n\n" +
+
+                    "whatever it is, don't force yourself to be okay just because you think you should be.\n\n" +
+
+                    "take a break. eat something. drink some water. sleep if you need to.\n\n" +
+
+                    "you can tell me about it too, even if you don't know how to explain it.\n\n" +
+
+                    "i'll listen.";
+
+            }
+
+
+
+            /* YOU FEEL ALONE */
+
+            else if (type === "alone") {
+
+
+                view.style.background = "#dce8df";
+
+
+                title.innerHTML =
+                    "you feel alone ♡";
+
+
+                text.innerHTML =
+                    "i know i can't always be there the way i want to.\n\n" +
+
+                    "we're far from each other and sometimes that really sucks. " +
+                    "but just because i'm not physically there doesn't mean you have to deal with everything by yourself.\n\n" +
+
+                    "if you're feeling lonely, text me.\n\n" +
+
+                    "tell me about your day. complain about something. " +
+                    "send me random stuff. literally anything.\n\n" +
+
+                    "you don't need a reason to talk to me.\n\n" +
+
+                    "i'm here, even from far away.";
+
+            }
+
+
+
+            /* YOU JUST NEED ME */
+
+            else if (type === "needme") {
+
+
+                view.style.background = "#ead8e8";
+
+
+                title.innerHTML =
+                    "you just need me ♡";
+
+
+                text.innerHTML =
+                    "if you opened this because you just need me, " +
+                    "then hi.\n\n" +
+
+                    "i'm here.\n\n" +
+
+                    "you don't have to explain anything if you don't want to. " +
+                    "you can just text me and say you need me.\n\n" +
+
+                    "that's enough.\n\n" +
+
+                    "i might not know exactly what to do, " +
+                    "but i'll try to be here for you in whatever way i can.\n\n" +
+
+                    "so come find me when you need me, okay?\n\n" +
+
+                    "your princess is always somewhere around.";
+
+            }
+
+
+
+            /* WE BECOME STRANGERS */
+
+            else if (type === "strangers") {
+
+
+                view.style.background = "#e6ded8";
+
+
+                title.innerHTML =
+                    "if we become strangers ♡";
+
+
+                text.innerHTML =
+                    "i don't really know what the future looks like for us.\n\n" +
+
+                    "maybe we'll still be here years from now, " +
+                    "maybe things will change, or maybe one day we'll barely talk anymore.\n\n" +
+
+                    "if that ever happens, i just hope you don't forget me completely.\n\n" +
+
+                    "i hope you'll still remember the stupid conversations, " +
+                    "the random things we talked about, " +
+                    "and all the little moments we had.\n\n" +
+
+                    "i don't regret knowing you. " +
+                    "not even a little.\n\n" +
+
+                    "and if one day i'm no longer around, " +
+                    "i hope you keep this little space somewhere.\n\n" +
+
+                    "not because you have to, " +
+                    "but just so you'll remember that once, " +
+                    "there was a girl who cared about you a lot.\n\n" +
+
+                    "so please don't get too tired of me, okay?\n\n" +
+
+                    "and if we ever become strangers, " +
+                    "i hope you still remember me as someone who loved having you in her life.";
+
+            }
+
+        }
+
+
+
+        function backToLetters() {
+
+
+            const list =
+                document.getElementById("letterList");
+
+
+            const view =
+                document.getElementById("letterView");
+
+
+            list.style.display = "block";
+
+
+            view.classList.remove("show");
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

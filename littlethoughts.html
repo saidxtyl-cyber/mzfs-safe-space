@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Little thoughts ♡</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+
+            background-image: url("image/love.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            color: #5b4a45;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+
+            padding: 40px 50px;
+
+            background: rgba(255, 250, 247, 0.80);
+
+            border: 1px solid rgba(255, 255, 255, 0.65);
+
+            border-radius: 28px;
+
+            box-shadow: 0 15px 45px rgba(70, 50, 45, 0.18);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            text-align: center;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .brand {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #8a746d;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #6b5750;
+            font-size: 14px;
+        }
+
+        .home:hover {
+            text-decoration: underline;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 85px;
+            height: 85px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 3px solid rgba(255,255,255,0.8);
+
+            box-shadow: 0 8px 20px rgba(70,50,45,0.15);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            margin-bottom: 18px;
+        }
+
+        .intro {
+            max-width: 650px;
+
+            margin: 0 auto 30px;
+
+            font-size: 16px;
+            line-height: 1.8;
+
+            color: #705e57;
+        }
+
+        .note {
+            background: rgba(255,255,255,0.48);
+
+            border: 1px solid rgba(255,255,255,0.7);
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            max-width: 650px;
+
+            margin: 0 auto;
+        }
+
+        .note h2 {
+            font-size: 22px;
+            font-weight: normal;
+
+            margin-bottom: 8px;
+        }
+
+        .note p {
+            font-size: 14px;
+
+            color: #8a746d;
+
+            margin-bottom: 20px;
+        }
+
+        .thought-box {
+            width: 100%;
+
+            min-height: 190px;
+
+            resize: vertical;
+
+            border: none;
+            outline: none;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            color: #5b4a45;
+
+            background: rgba(255,250,247,0.85);
+
+            box-shadow: inset 0 0 0 1px rgba(120,90,80,0.10);
+        }
+
+        .thought-box::placeholder {
+            color: #a28f88;
+        }
+
+        .small-text {
+            font-size: 12px;
+
+            color: #9a857d;
+
+            margin-top: 10px;
+        }
+
+        .button {
+            margin-top: 20px;
+
+            border: none;
+
+            padding: 13px 28px;
+
+            border-radius: 30px;
+
+            background: rgba(91,74,69,0.88);
+
+            color: white;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+
+            background: rgba(91,74,69,1);
+        }
+
+        .button:disabled {
+            opacity: 0.6;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            color: #75645d;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .error-message {
+            display: none;
+
+            margin-top: 18px;
+
+            font-size: 14px;
+
+            color: #9a5f5f;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .footer {
+            margin-top: 30px;
+
+            font-size: 12px;
+
+            color: #907c75;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .container {
+                padding: 30px 22px;
+            }
+
+            .top {
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .intro {
+                font-size: 14px;
+            }
+
+            .note {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+    <!-- Supabase -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <div class="top">
+
+            <div class="brand">
+                MZFS SAFE SPACE
+            </div>
+
+            <a href="index.html" class="home">
+                ← home
+            </a>
+
+        </div>
+
+
+        <div class="logo">
+
+            <img src="image/us.png" alt="MZFS Logo">
+
+        </div>
+
+
+        <h1>
+            Little Thoughts ♡
+        </h1>
+
+
+        <p class="intro">
+
+            Not everything you want to tell me has to be something serious.
+
+            Sometimes it's just a random thought, a little story from your day,
+            something that made you smile, or something you suddenly felt like sharing.
+
+        </p>
+
+
+        <div class="note">
+
+            <h2>
+                Leave me a little note
+            </h2>
+
+            <p>
+                Anything you want. Big or small.
+            </p>
+
+
+            <textarea
+                id="thought"
+                class="thought-box"
+                placeholder="write whatever is on your mind...
+anything you wanted to share with me, or just a little thought you want to leave behind."
+            ></textarea>
+
+
+            <p class="small-text">
+                You don't have to make it perfect.
+            </p>
+
+
+            <button
+                id="sendButton"
+                class="button"
+                onclick="sendThought()"
+            >
+                leave my note
+            </button>
+
+
+            <div
+                id="successMessage"
+                class="success-message"
+            >
+                your little note has been saved ♡
+            </div>
+
+
+            <div
+                id="errorMessage"
+                class="error-message"
+            >
+                something went wrong. please try again.
+            </div>
+
+        </div>
+
+
+        <p class="footer">
+            made with love by princess ♡
+        </p>
+
+    </div>
+
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://ifqqduiltgxaxjdiabho.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_O6AmN4j6nV7NG9hFmEUKFA_SgkuXgnt";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        async function sendThought() {
+
+            const thought =
+                document.getElementById("thought").value.trim();
+
+            const button =
+                document.getElementById("sendButton");
+
+            const successMessage =
+                document.getElementById("successMessage");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+
+            if (thought === "") {
+
+                errorMessage.textContent =
+                    "write something first.";
+
+                errorMessage.classList.add("show");
+
+                successMessage.classList.remove("show");
+
+                return;
+            }
+
+
+            button.disabled = true;
+
+            button.textContent = "saving...";
+
+            successMessage.classList.remove("show");
+
+            errorMessage.classList.remove("show");
+
+
+            const { data, error } =
+                await supabaseClient
+                    .from("messages")
+                    .insert([
+                        {
+                            message: thought,
+                            type: "littlethoughts"
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(error);
+
+                errorMessage.textContent =
+                    "something went wrong. please try again.";
+
+                errorMessage.classList.add("show");
+
+                button.disabled = false;
+
+                button.textContent = "leave my note";
+
+                return;
+            }
+
+
+            document.getElementById("thought").value = "";
+
+            successMessage.classList.add("show");
+
+            button.disabled = false;
+
+            button.textContent = "leave my note";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

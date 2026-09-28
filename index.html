@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MZFS Safe Space</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            background-image: url("image/love.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+
+            color: #5b4a45;
+        }
+
+
+        /* MAIN WHITE TRANSPARENT BACKGROUND */
+
+        .safe-space {
+            width: 100%;
+            max-width: 900px;
+
+            min-height: 550px;
+
+            padding: 45px 55px;
+
+            background: rgba(255, 250, 247, 0.78);
+
+            border: 1px solid rgba(255, 255, 255, 0.65);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 45px rgba(70, 50, 45, 0.18);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            position: relative;
+
+            text-align: center;
+        }
+
+
+        /* TOP RIGHT */
+
+        .brand {
+            position: absolute;
+
+            top: 25px;
+            right: 30px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            color: #806d66;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            width: 125px;
+            height: 125px;
+
+            margin: 5px auto 25px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, 0.55);
+
+            border: 4px solid rgba(255, 255, 255, 0.85);
+
+            box-shadow:
+                0 8px 25px rgba(70, 50, 45, 0.18);
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        /* GREETING */
+
+        .greeting {
+            font-size: 27px;
+
+            font-weight: normal;
+
+            color: #594641;
+
+            margin-bottom: 18px;
+
+            text-shadow:
+                0 1px 2px rgba(255,255,255,0.6);
+        }
+
+
+        .heart {
+            font-size: 20px;
+
+            margin-left: 5px;
+
+            color: #8b6860;
+        }
+
+
+        /* MESSAGE */
+
+        .message {
+            max-width: 650px;
+
+            margin: 0 auto 35px;
+
+            font-size: 15px;
+
+            line-height: 2;
+
+            color: #76635d;
+        }
+
+
+        .message strong {
+            color: #5d4943;
+
+            font-weight: normal;
+        }
+
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: stretch;
+
+            gap: 12px;
+
+            width: 100%;
+        }
+
+
+        .btn {
+            flex: 1;
+
+            min-height: 62px;
+
+            padding: 15px 12px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            border-radius: 22px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+
+            color: #66534d;
+
+            background: rgba(255, 255, 255, 0.50);
+
+            border: 1px solid rgba(255, 255, 255, 0.85);
+
+            box-shadow:
+                0 6px 18px rgba(80, 60, 55, 0.08);
+
+            transition: 0.25s ease;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-3px);
+
+            background: rgba(255, 255, 255, 0.72);
+
+            box-shadow:
+                0 10px 22px rgba(80, 60, 55, 0.13);
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 35px;
+
+            font-size: 12px;
+
+            color: #947e76;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 18px;
+            }
+
+
+            .safe-space {
+                padding: 42px 20px 35px;
+
+                min-height: auto;
+
+                border-radius: 24px;
+            }
+
+
+            .brand {
+                top: 20px;
+
+                right: 20px;
+
+                font-size: 9px;
+
+                letter-spacing: 1.5px;
+            }
+
+
+            .logo {
+                width: 110px;
+                height: 110px;
+
+                margin-top: 10px;
+            }
+
+
+            .greeting {
+                font-size: 22px;
+            }
+
+
+            .message {
+                font-size: 14px;
+
+                line-height: 1.8;
+            }
+
+
+            .buttons {
+                gap: 8px;
+            }
+
+
+            .btn {
+                min-height: 70px;
+
+                padding: 10px 7px;
+
+                font-size: 11px;
+
+                border-radius: 18px;
+            }
+        }
+
+
+        /* SMALL PHONE */
+
+        @media (max-width: 430px) {
+
+            .safe-space {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+
+            .buttons {
+                gap: 6px;
+            }
+
+
+            .btn {
+                font-size: 10px;
+
+                padding: 8px 5px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="safe-space">
+
+
+        <!-- TOP RIGHT -->
+
+        <div class="brand">
+
+            MZFS SAFE SPACE
+
+        </div>
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <img src="image/us.png" alt="MZFS Logo">
+
+        </div>
+
+
+        <!-- GREETING -->
+
+        <h1 class="greeting">
+
+            Hai, M. Zulfahmi Syazwi
+
+            <span class="heart">♡</span>
+
+        </h1>
+
+
+        <!-- MESSAGE -->
+
+        <p class="message">
+
+            I made this little space just for you bb.
+
+            <br><br>
+
+            Maybe I can't always find the right words
+            to make your heavy days feel lighter,
+            but I wanted to create somewhere that could
+            hold a little piece of my care for you.
+
+            <br><br>
+
+            A place you can come to when your mind feels tired,
+            when you have too much on your heart,
+            or when you simply need a little comfort.
+
+            <br><br>
+
+            I may not be there in the way I wish I could be,
+            <br>
+            but please know that my heart is always here for you.
+
+            <br><br>
+
+            Whenever you need somewhere to go, come here.
+
+            <br>
+
+            Whenever you need someone to listen, I'll be here.
+
+            <br><br>
+
+            And if you ever forget, let this little space remind you..
+
+            <br>
+
+            <strong>you'll always have me.</strong>
+
+        </p>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+
+            <a class="btn" href="hardday.html">
+
+                I'm having<br>a hard day
+
+            </a>
+
+
+            <a class="btn" href="littlethoughts.html">
+
+                I just want<br>to let things out
+
+            </a>
+
+
+            <a class="btn" href="openme.html">
+
+                Open me<br>when...
+
+            </a>
+
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <p class="footer">
+
+            made with love by princess ♡
+
+        </p>
+
+
+    </main>
+
+
+</body>
+
+</html>

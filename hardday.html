@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>It's Been a Hard Day ♡</title>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+
+            background-image: url("image/love.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+            color: #5b4a45;
+        }
+
+        .safe-space {
+            width: 100%;
+            max-width: 900px;
+            min-height: 650px;
+
+            padding: 45px 55px;
+
+            background: rgba(255, 250, 247, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+
+            border-radius: 28px;
+
+            box-shadow: 0 15px 45px rgba(70, 50, 45, 0.18);
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+
+            position: relative;
+            text-align: center;
+        }
+
+        .brand {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #806d65;
+        }
+
+        .logo {
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+
+            object-fit: cover;
+            border-radius: 50%;
+
+            border: 4px solid rgba(255, 255, 255, 0.8);
+
+            box-shadow: 0 8px 25px rgba(70, 50, 45, 0.15);
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: normal;
+            color: #5b4740;
+
+            margin-bottom: 25px;
+        }
+
+        .heart {
+            color: #8d6f65;
+        }
+
+        .message {
+            max-width: 700px;
+            margin: 0 auto;
+
+            font-size: 16px;
+            line-height: 1.9;
+
+            color: #66534c;
+        }
+
+        .message strong {
+            color: #5b4740;
+            font-weight: normal;
+        }
+
+        .question {
+            margin-top: 35px;
+            margin-bottom: 18px;
+
+            font-size: 18px;
+            color: #5b4740;
+        }
+
+        .talk-btn {
+            display: inline-block;
+
+            padding: 14px 32px;
+
+            border: 1px solid rgba(120, 95, 85, 0.35);
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            color: #5b4740;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .talk-btn:hover {
+            background: rgba(255, 255, 255, 0.75);
+            transform: translateY(-2px);
+        }
+
+        #writeArea {
+            display: none;
+
+            max-width: 650px;
+            margin: 30px auto 0;
+        }
+
+        #writeArea.show {
+            display: block;
+        }
+
+        .write-title {
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: #5b4740;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 180px;
+
+            padding: 18px;
+
+            resize: vertical;
+
+            border: 1px solid rgba(120, 95, 85, 0.25);
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.65);
+
+            color: #5b4740;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: rgba(120, 95, 85, 0.5);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        textarea::placeholder {
+            color: #9a8981;
+        }
+
+        .send-btn {
+            margin-top: 15px;
+
+            padding: 12px 28px;
+
+            border: none;
+            border-radius: 25px;
+
+            background: #6b5750;
+            color: white;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 14px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #55443e;
+        }
+
+        .send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .status {
+            display: none;
+
+            margin-top: 15px;
+
+            font-size: 13px;
+            color: #806d65;
+        }
+
+        .status.show {
+            display: block;
+        }
+
+        .status.error {
+            color: #9a5f5f;
+        }
+
+        .back {
+            display: inline-block;
+
+            margin-top: 35px;
+
+            color: #806d65;
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 30px;
+
+            font-size: 12px;
+            letter-spacing: 1px;
+
+            color: #96847d;
+        }
+
+        @media (max-width: 650px) {
+
+            body {
+                padding: 18px;
+            }
+
+            .safe-space {
+                padding: 40px 25px;
+            }
+
+            .brand {
+                top: 20px;
+                right: 22px;
+
+                font-size: 10px;
+            }
+
+            .logo img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .title {
+                font-size: 27px;
+            }
+
+            .message {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="safe-space">
+
+        <div class="brand">
+            MZFS SAFE SPACE
+        </div>
+
+        <div class="logo">
+            <img src="image/us.png" alt="MZFS Logo">
+        </div>
+
+        <h1 class="title">
+            It's been a hard day, huh?
+            <span class="heart">♡</span>
+        </h1>
+
+        <div class="message">
+
+            <p>
+                I know you've been feeling burned out lately,<br>
+                even if you don't really know why.
+            </p>
+
+            <br>
+
+            <p>
+                And that's okay.
+                You don't always need to have a reason for feeling tired.
+                Sometimes your mind and your heart just need a little break.
+            </p>
+
+            <br>
+
+            <p>
+                Maybe today was just one of those days where
+                everything felt a little heavier than usual.
+                Maybe you're tired from things you can't even explain.
+                Or maybe you've been keeping too many things inside
+                for too long.
+            </p>
+
+            <br>
+
+            <p>
+                Whatever it is, you don't have to pretend that you're okay here.
+                You don't have to make your feelings sound reasonable.
+                You don't have to find the perfect words either.
+            </p>
+
+            <br>
+
+            <p>
+                If something is bothering you, tell me.
+                If you don't know what's bothering you, you can tell me that too.
+                Even if you just want to complain about your day,
+                talk about something random,
+                or simply let everything out without needing an answer,
+                that's okay.
+            </p>
+
+            <br>
+
+            <p>
+                I may not always know exactly what to say,
+                and I may not be able to make everything better,
+                but I can listen.
+            </p>
+
+            <br>
+
+            <p>
+                You don't have to carry everything by yourself.
+                Whenever your mind gets too loud,
+                come back here and leave whatever you've been keeping inside.
+            </p>
+
+            <br>
+
+            <p>
+                <strong>
+                    No judgement. No pressure. Just a safe little space for you.
+                </strong>
+            </p>
+
+        </div>
+
+        <div class="question">
+            So... nak cerita tak?
+        </div>
+
+        <button class="talk-btn" onclick="showWriteArea()">
+            nak cerita tak dekat princess?
+        </button>
+
+        <div id="writeArea">
+
+            <div class="write-title">
+                Take your time bb. I'm here, listening.
+            </div>
+
+            <textarea
+                id="thought"
+                placeholder="You can tell me anything...&#10;&#10;What happened today?&#10;How are you feeling?&#10;Or just write whatever is on your mind."
+            ></textarea>
+
+            <br>
+
+            <button
+                id="sendButton"
+                class="send-btn"
+                onclick="sendThought()"
+            >
+                send to princess
+            </button>
+
+            <div id="status" class="status"></div>
+
+        </div>
+
+        <a href="index.html" class="back">
+            ← back to my safe space
+        </a>
+
+        <p class="footer">
+            made with love by princess ♡
+        </p>
+
+    </div>
+
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://ifqqduiltgxaxjdiabho.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_O6AmN4j6nV7NG9hFmEUKFA_SgkuXgnt";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        function showWriteArea() {
+
+            const area =
+                document.getElementById("writeArea");
+
+            area.classList.add("show");
+
+            area.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        async function sendThought() {
+
+            const thought =
+                document
+                    .getElementById("thought")
+                    .value
+                    .trim();
+
+            const button =
+                document.getElementById("sendButton");
+
+            const status =
+                document.getElementById("status");
+
+
+            status.classList.remove("show");
+            status.classList.remove("error");
+
+
+            if (thought === "") {
+
+                status.textContent =
+                    "tell me what's on your mind first.";
+
+                status.classList.add("show");
+                status.classList.add("error");
+
+                return;
+
+            }
+
+
+            button.disabled = true;
+
+            button.textContent = "saving...";
+
+
+            const { error } =
+                await supabaseClient
+                    .from("messages")
+                    .insert([
+                        {
+                            message: thought,
+                            type: "hardday"
+                        }
+                    ]);
+
+
+            if (error) {
+
+                console.error(error);
+
+                status.textContent =
+                    "something went wrong. please try again.";
+
+                status.classList.add("show");
+                status.classList.add("error");
+
+                button.disabled = false;
+
+                button.textContent = "send to princess";
+
+                return;
+
+            }
+
+
+            document.getElementById("thought").value = "";
+
+            status.textContent =
+                "your thoughts have been saved ♡";
+
+            status.classList.add("show");
+
+            button.disabled = false;
+
+            button.textContent = "send to princess";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
